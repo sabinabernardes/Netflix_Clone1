@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.TextView;
 
 
@@ -30,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
         List<Movie> movies = new ArrayList<>();
         for (int i = 0; i <30 ; i++) {
             Movie movie = new Movie();
-            movie.setCoverUrl("abc"+i);
+            movie.setCoverUrl("abc"+ i);
             movies.add(movie);
 
         }
-        //mainAdapter = new MainAdapter(movies);
+       // mainAdapter = new MainAdapter(movies);
         recyclerview.setLayoutManager(
                 new LinearLayoutManager
                         (this,RecyclerView.VERTICAL,false));
