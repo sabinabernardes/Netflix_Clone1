@@ -1,14 +1,14 @@
 package com.binapp.netflix_clone.model;
 
 public class Movie {
-    private int coverUrl;
+    private String coverUrl;
 
-
-
-    public void setCoverUrl(int coverUrl) {
+    public String getCoverURl()
+    {return coverUrl;
+    }
+    public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
     }
 
-    public int getCoverURl() {return coverUrl;
-    }
+
 }

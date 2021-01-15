@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.binapp.netflix_clone.model.Category;
 import com.binapp.netflix_clone.model.Movie;
 
+import com.binapp.netflix_clone.util.JsonDownloadTask;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 false));
         recyclerview.setAdapter(mainAdapter);
 
+        new JsonDownloadTask(this).execute("https://tiagoaguiar.co/api/netflix/home");
     }
 
 
