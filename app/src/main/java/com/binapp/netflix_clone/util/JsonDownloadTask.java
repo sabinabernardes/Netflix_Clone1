@@ -3,9 +3,12 @@ package com.binapp.netflix_clone.util;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.binapp.netflix_clone.model.Category;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -57,14 +61,29 @@ public class JsonDownloadTask extends AsyncTask<String,Void,List<Category>> {
             BufferedInputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
             String jsonAsString =toString(in);
-            Log.i("Teste",jsonAsString);
+            List<Category> categories = getCategories(new JSONObject(jsonAsString));
+            in.close();
+            return categories;
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
         return null;
+    }
+
+    private List<Category> getCategories(JSONObject json) throws JSONException {
+        List<Category> categories = new ArrayList<>();
+        JSONArray categoryArray = json.getJSONArray("category");
+        for (int i = 0; i <categoryArray.length(); i++) {
+        //categoryArray
+
+
+        }
+        return categories;
     }
 
     //main-tread
@@ -72,6 +91,7 @@ public class JsonDownloadTask extends AsyncTask<String,Void,List<Category>> {
     protected void onPostExecute(List<Category> categories) {
         super.onPostExecute(categories);
         dialog.dismiss();
+        //listerner
     }
     private String toString(InputStream is) throws IOException {
         byte[] bytes = new byte[1024];
